@@ -1,6 +1,19 @@
 import { TestConfig } from "./frameworkTypes";
+import { PerfResult } from "./perfResult";
 
-export function logPerfResult(row: PerfRowStrings): void {
+export function logPerfHeaders(): void {
+  logPerfRow(perfReportHeaders());
+}
+
+export function logPerfResult(row: PerfResult): void {
+  logPerfRow({
+    framework: row.framework,
+    test: row.test,
+    time: row.time.toFixed(2),
+  });
+}
+
+function logPerfRow(row: PerfRowStrings): void {
   const line = Object.values(trimColumns(row)).join(" , ");
   console.log(line);
 }

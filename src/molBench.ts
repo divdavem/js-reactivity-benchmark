@@ -1,5 +1,6 @@
 import { fastestTest } from "./util/benchRepeat";
 import { ReactiveFramework } from "./util/reactiveFramework";
+import { PerfResultCallback } from "./util/perfResult";
 
 function fib(n: number): number {
   if (n < 2) return 1;
@@ -12,7 +13,7 @@ function hard(n: number, _log: string) {
 
 const numbers = Array.from({ length: 5 }, (_, i) => i);
 
-export async function molBench(framework: ReactiveFramework) {
+export async function molBench(framework: ReactiveFramework, resultCallback: PerfResultCallback) {
   let res = [];
   const iter = framework.withBuild(() => {
     const A = framework.signal(0);
@@ -54,7 +55,7 @@ export async function molBench(framework: ReactiveFramework) {
     }
   });
 
-  process.send?.({
+  resultCallback({
     framework: framework.name,
     test: "molBench",
     time: timing.time,

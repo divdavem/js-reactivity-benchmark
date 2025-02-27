@@ -54,7 +54,7 @@ importers:
         specifier: ^3.4.2
         version: 3.4.2
       random:
-        specifier: ^5.1.1
+        specifier: 5.1.1
         version: 5.1.1
       react:
         specifier: ^19.0.0
